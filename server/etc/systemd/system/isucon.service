@@ -1,0 +1,10 @@
+[Unit]
+Description = isucon
+
+[Service]
+ExecStart = /home/isucon/env.sh carton exec -- start_server --path /dev/shm/app.sock --backlog 16384 -- plackup -s Gazelle --max-workers=4 --max-reqs-per-child=500000 --min-reqs-per-child=400000 -E prod /home/isucon/webapp/perl/app.psgi
+Restart = always
+User = isucon
+
+[Install]
+WantedBy = multi-user.target
